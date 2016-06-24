@@ -1,0 +1,103 @@
+<configuration>
+	<property name="count_path" value="/opt/ourpalm/apps/tomcat_8079/logs/racing_gm" />
+	<property name="count_name_pre" value="racing.gm" />
+
+	<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+		<SMTPHost>smtp.xxx.com</SMTPHost>
+		<SMTPPort>25</SMTPPort>
+		<SSL>true</SSL>
+		<To>zhangbo1@xxx.com</To> <!-- additional destinations are possible -->
+		<From>racingsender@xxx.com</From>
+		<Username>racingsender@xxx.com</Username>
+		<Password>racing123</Password>
+		<Subject>rac_editor: %logger{20} - %m</Subject>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%date %-5level %logger - %message%n</Pattern>
+		</layout>
+	</appender>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %m%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>info</level>
+		</filter>
+	</appender>
+	<appender name="filelog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+		<!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+		<!--for further documentation -->
+		<Append>true</Append>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %p-%l %m%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>debug</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${count_path}/syslog.%d{yyyy-MM-dd'.txt'}
+			</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+	<appender name="errorlog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+		<!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+		<!--for further documentation -->
+		<File>${count_path}/errorlog.txt</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %p-%l %m%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${count_path}/errorlog.%d{yyyy-MM-dd'.txt'}
+			</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+	<appender name="gmlog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+		<!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy -->
+		<!--for further documentation -->
+		<Append>true</Append>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %p-%l %m%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>debug</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${count_path}/gmlog.%d{yyyy-MM-dd'.txt'}
+			</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+	<logger name="org.apache" level="warn">
+		<appender-ref ref="filelog" />
+	</logger>
+	<logger name="org.hibernate" level="warn">
+		<appender-ref ref="filelog" />
+	</logger>
+	<logger name="org.springframework" level="warn">
+		<appender-ref ref="filelog" />
+	</logger>
+	<logger name="org.quartz" level="warn">
+		<appender-ref ref="filelog" />
+	</logger>
+	<logger name="com.ourpalm.editor.controller.GmController" level="debug">
+		<appender-ref ref="gmlog" />
+	</logger>
+	<logger name="com.ourpalm.editor.controller.GgmController" level="debug">
+		<appender-ref ref="gmlog" />
+	</logger>
+	<root level="ALL">
+		<appender-ref ref="stdout" />
+<!--		<appender-ref ref="filelog" />-->
+		<appender-ref ref="EMAIL" />
+		<appender-ref ref="errorlog" />
+	</root>
+</configuration>
