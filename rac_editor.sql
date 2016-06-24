@@ -587,14 +587,6 @@ CREATE TABLE `authorities` (
   CONSTRAINT `FK_authorities_users` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `authorities` */
-
-LOCK TABLES `authorities` WRITE;
-
-insert  into `authorities`(`username`,`authority`) values ('admin','ADMIN'),('admin','DEV'),('admin','COMM'),('deve','DEV'),('deve','COMM'),('gm','COMM'),('zhangbo','ADMIN'),('zhangbo','COMM'),('zhangbo','DEV'),('liuyuan','ADMIN'),('liuyuan','COMM'),('liuyuan','DEV'),('admin','SUPER'),('shenyou','COMM'),('shenyou','DEV'),('wenweiping','COMM'),('wenweiping','DEV');
-
-UNLOCK TABLES;
-
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
@@ -612,6 +604,14 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 
 insert  into `users`(`username`,`password`,`enabled`,`usernamecn`) values ('admin','bd6920aa9c2bdacd2ed757eaf49aeec2',1,'系统管理员'),('deve','e5cdbf271acb0ff097fa468c7b23cdb6',1,'项目开发者'),('gm','bf6e521247b3dde4590f3f3e56695b33',1,'一般用户'),('liuyuan','64d08336044af782dde07ce1d53385f3',1,'系统管理员'),('shenyou','6ffe4748451a437c8fd5e7fe3d1f8e9d',1,NULL),('wenweiping','279fb1be5685e4f39e1b018a917cd9ab',1,NULL),('zhangbo','6109c303d1a1df87f7bfbc9f562670da',1,'系统管理员');
+
+UNLOCK TABLES;
+
+/*Data for the table `authorities` */
+
+LOCK TABLES `authorities` WRITE;
+
+insert  into `authorities`(`username`,`authority`) values ('admin','ADMIN'),('admin','DEV'),('admin','COMM'),('deve','DEV'),('deve','COMM'),('gm','COMM'),('zhangbo','ADMIN'),('zhangbo','COMM'),('zhangbo','DEV'),('liuyuan','ADMIN'),('liuyuan','COMM'),('liuyuan','DEV'),('admin','SUPER'),('shenyou','COMM'),('shenyou','DEV'),('wenweiping','COMM'),('wenweiping','DEV');
 
 UNLOCK TABLES;
 
