@@ -20,6 +20,12 @@ repositories {
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext.springVersion = '4.3.0.RELEASE'
+ext.springSecurityVersion = '3.2.3.RELEASE'
+
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
@@ -62,23 +68,23 @@ dependencies {
    
 	compile group: 'com.sshtools', name: 'j2ssh-maverick', version: '1.5.5'
     
-	compile group: 'org.springframework', name: 'spring-aop', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-beans', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-context', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-context-support', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-core', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-expression', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-orm', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-test', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-tx', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-web', version: '4.3.0.RELEASE'
-	compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.0.RELEASE'
+	compile group: 'org.springframework', name: 'spring-aop', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-beans', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-core', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-expression', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-jdbc', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-orm', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-test', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-tx', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-web', version: "$springVersion"
+	compile group: 'org.springframework', name: 'spring-webmvc', version: "$springVersion"
 	
-	compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.1.0.RELEASE'
-	compile group: 'org.springframework.security', name: 'spring-security-core', version: '4.1.0.RELEASE'
-	compile group: 'org.springframework.security', name: 'spring-security-taglibs', version: '4.1.0.RELEASE'
-	compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.1.0.RELEASE'
+	compile group: 'org.springframework.security', name: 'spring-security-config', version: "$springSecurityVersion"
+	compile group: 'org.springframework.security', name: 'spring-security-core', version: "$springSecurityVersion"
+	compile group: 'org.springframework.security', name: 'spring-security-taglibs', version: "$springSecurityVersion"
+	compile group: 'org.springframework.security', name: 'spring-security-web', version: "$springSecurityVersion"
 	
 	compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.12.2.RELEASE'
 	compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.2.RELEASE'

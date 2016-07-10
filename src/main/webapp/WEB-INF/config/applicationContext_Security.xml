@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 			http://www.springframework.org/schema/security 
-			http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+			http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<!-- 启用注解方式对方法的权限控制 -->
 	<security:global-method-security
@@ -14,11 +14,12 @@
 		<!--			expression="execution(* com.ourpalm.controller.*.*(..))" />-->
 	</security:global-method-security>
 
-	<!-- use-expressions="true" 的意思是开启表达式 -->
-	<security:http use-expressions="true"
+	<!--
+		use-expressions="true" 的意思是开启表达式
+		access-denied-page的意思是，当验证权限失败后会跳转到的页面
+	-->
+	<security:http use-expressions="true" access-denied-page="/error-denied.jsp"
 		entry-point-ref="authenticationProcessingFilterEntryPoint">
-	<!-- 		当验证权限失败后会跳转到的页面 -->
-		<security:access-denied-handler error-page="/error-denied.jsp"/>
 		<security:intercept-url pattern="/index.jsp*"
 			access="hasRole('COMM')" />
 
